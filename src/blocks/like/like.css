@@ -1,0 +1,9 @@
+@import url("./__count/like__count.css");
+@import url("./__btn/like__btn.css");
+@import url("./__btn/_active/like__btn_active.css");
+
+.like {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}

@@ -1,0 +1,29 @@
+.profile__about {
+  overflow: hidden;
+  flex: 1 0 100%;
+
+  margin: 0;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: #ffffff;
+
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+}
+
+@media screen and (max-width: 1280px) {
+  .profile__about {
+    font-size: calc((100vw - 300px) / (1280 - 300) * (18 - 14) + 14px);
+    line-height: calc((100vw - 300px) / (1280 - 300) * (22 - 17) + 17px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile__about {
+    text-align: center;
+  }
+}

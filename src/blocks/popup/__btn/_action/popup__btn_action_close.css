@@ -1,0 +1,39 @@
+.popup__btn_action_close {
+  position: absolute;
+  top: -39px;
+  right: -38px;
+
+  width: 42px;
+  height: 42px;
+
+  transition: opacity .2s ease-in;
+  transform: rotate(45deg);
+
+  border: none;
+  border-image-width: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../../images/profile-add-btn.svg);
+  background-size: cover;
+}
+
+.popup__btn_action_close:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__btn_action_close{
+    top: calc((100vw - 320px) / (600 - 320) * (-39 + 28) - 28px);
+    right: calc((100vw - 320px) / (600 - 320) * (-38 + 28) - 28px);
+
+    width: calc((100vw - 320px) / (600 - 320) * (42 - 30) + 30px);
+    height: calc((100vw - 320px) / (600 - 320) * (42 - 30) + 30px);
+  }
+}
+
+
+@media screen and (max-width: 320px) {
+  .popup__btn_action_close{
+    top: -28px;
+    right: -28px;
+  }
+}

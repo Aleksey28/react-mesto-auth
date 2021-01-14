@@ -1,0 +1,14 @@
+.card__btn_action_trush {
+  position: absolute;
+
+  align-self: flex-end;
+
+  width: 18px;
+  height: 19.3px;
+
+  transform: translate(-15px, 18px);
+
+  background-color: rgba(0, 0, 0, 0);
+  background-image: url(../../../../images/card-trash.svg);
+  background-size: cover;
+}

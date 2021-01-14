@@ -1,0 +1,9 @@
+.popup__error_visible {
+  visibility: visible;
+
+  margin-bottom: 6px;
+}
+
+.popup__error_visible:last-of-type {
+  margin-bottom: 0;
+}

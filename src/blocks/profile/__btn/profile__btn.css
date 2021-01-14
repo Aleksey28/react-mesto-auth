@@ -1,0 +1,13 @@
+.profile__btn{
+  box-sizing: border-box;
+  padding: 0;
+
+  cursor: pointer;
+  transition: opacity .2s ease-in;
+
+  border: none;
+  outline: none;
+  background-color: black;
+  background-repeat: no-repeat;
+  background-position: center;
+}

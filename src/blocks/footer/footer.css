@@ -1,0 +1,27 @@
+@import url(./__copyright/footer__copyright.css);
+
+.footer {
+  width: calc(100% - 199px * 2);
+  min-width: calc(1024px - 100px * 2);
+  max-width: calc(1280px - 199px * 2);
+  padding: 0 0 57px;
+}
+
+@media screen and (max-width: 1280px) {
+  .footer {
+    padding-bottom: calc((100vw - 300px) / (1280 - 300) * (57 - 33) + 33px);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .footer {
+    width: calc(100% - 100px * 2);
+    min-width: calc(768px - 19px * 2);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    min-width: calc(100% - 19px * 2);
+  }
+}

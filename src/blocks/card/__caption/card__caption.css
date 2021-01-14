@@ -1,0 +1,21 @@
+.card__caption {
+  overflow: hidden;
+
+  max-width: calc(100% - 29px);
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: #000000;
+
+  font-size: 24px;
+  font-weight: 900;
+  font-style: normal;
+  line-height: 29px;
+}
+
+@media screen and (max-width: 425px) {
+  .card__caption {
+    line-height: 31px;
+  }
+}

@@ -1,0 +1,30 @@
+.popup__btn_action_submit {
+  height: 50.15px;
+  margin-top: 31px;
+
+  transition: background-color .2s ease-in;
+  text-align: center;
+
+  color: #FFFFFF;
+  border-radius: 2px;
+  background-color: #000000;
+
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+}
+
+.popup__btn_action_submit:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+@media screen and (max-width: 600px) {
+  .popup__btn_action_submit{
+    height: calc((100vw - 320px) / (600 - 320) * (50.15 - 40) + 40px);
+    margin-top: calc((100vw - 320px) / (600 - 320) * (31 - 19) + 19px);
+
+    font-size: calc((100vw - 320px) / (600 - 320) * (18 - 14) + 14px);
+    line-height: calc((100vw - 320px) / (600 - 320) * (22 - 17) + 17px);
+  }
+}

@@ -1,0 +1,16 @@
+@import url(./__image/card__image.css);
+@import url(./__footer/card__footer.css);
+@import url(./__caption/card__caption.css);
+@import url(./__btn/card__btn.css);
+@import url(./__btn/_action/card__btn_action_trush.css);
+@import url(./__btn/_hidden/card__btn_hidden.css);
+@import url(./__like/card__like.css);
+
+.card {
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
+
+  border-radius: 10px;
+  background: #ffffff;
+}

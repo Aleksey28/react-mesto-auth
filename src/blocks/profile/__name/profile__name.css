@@ -1,0 +1,32 @@
+.profile__name {
+  overflow: hidden;
+  flex: 1 0 auto;
+
+  max-width: calc(100% - 17px - 24px - 30px);
+  margin: 0 12px 5px 0;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  color: #FFFFFF;
+
+  font-size: 42px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 56px;
+}
+
+@media screen and (max-width: 1280px) {
+  .profile__name {
+    font-size: calc((100vw - 320px) / (1280 - 320) * (42 - 27) + 27px);
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .profile__name {
+    flex: 1 0 auto;
+
+    margin: 1px 0px -4px 4px;
+  }
+}

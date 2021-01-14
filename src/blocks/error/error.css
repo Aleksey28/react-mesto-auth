@@ -1,0 +1,14 @@
+.error {
+  color: #FFFFFF;
+
+  font-size: 42px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 56px;
+}
+
+@media screen and (max-width: 1280px) {
+  .error {
+    font-size: calc((100vw - 320px) / (1280 - 320) * (42 - 27) + 27px);
+  }
+}

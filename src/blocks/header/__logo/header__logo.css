@@ -1,0 +1,14 @@
+.header__logo {
+  width: 142.01px;
+  height: 33.4px;
+  margin-bottom: 35.6px;
+}
+
+@media screen and (max-width: 1280px) {
+  .header__logo {
+    width: calc((100vw - 320px) / (1280 - 320) * (146.6 - 106) + 106px);
+    height: calc((100vw - 320px) / (1280 - 320) * (34 - 33) + 33px);
+    margin-bottom: calc((100vw - 320px) / (1280 - 320) * (35.6 - 22.6) + 22.6px);
+    margin-left: calc((100vw - 320px) / (1280 - 320) * (0 - 25.7) + 25.7px);
+  }
+}

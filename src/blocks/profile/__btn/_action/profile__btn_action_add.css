@@ -1,0 +1,22 @@
+.profile__btn_action_add {
+  width: 150px;
+  height: 50px;
+
+  border: 2px solid #FFFFFF;
+  border-radius: 2px;
+  background-image: url(../../../../images/profile-add-btn.svg);
+  background-size: 22px 22px;
+}
+
+
+.profile__btn_action_add:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 600px) {
+  .profile__btn_action_add {
+    width: 100%;
+
+    background-size: 16px 16px;
+  }
+}
