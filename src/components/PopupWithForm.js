@@ -31,6 +31,15 @@ export default function PopupWithForm({
     setFormValues(defaultValues);
   }, [defaultValues]);
 
+  useEffect(() => {
+    if(!isOpen){
+      //Обнуляем стейт отображения ошибок
+      setShowErrors({});
+      //Устанавливаем дефолтные значения
+      setFormValues(defaultValues);
+    }
+  }, [isOpen])
+
   //Обработчик изменения любого инпута
   const onChangeInput = (name, value) => {
     //Обновляем стейт всех значений формы
@@ -44,22 +53,14 @@ export default function PopupWithForm({
   //Обработчик submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onSubmit(formValues);
-  };
-
-  //Обработчик закрытия
-  const handleClose = () => {
     //Обнуляем стейт отображения ошибок
     setShowErrors({});
-    //Устанавливаем дефолтные значения
-    setFormValues(defaultValues);
-    //Закрываем
-    onClose();
+    onSubmit(formValues);
   };
 
   const handleClickOnBackground = (evt) => {
     if (evt.target === evt.currentTarget) {
-      handleClose();
+      onClose();
     }
   };
 
@@ -118,7 +119,7 @@ export default function PopupWithForm({
         <button
           className="popup__btn popup__btn_action_close"
           type="button"
-          onClick={handleClose}
+          onClick={onClose}
         />
         <h2 className="popup__title">{title}</h2>
         <PopupWithFormContext.Provider value={formContextValue}>{children}</PopupWithFormContext.Provider>
