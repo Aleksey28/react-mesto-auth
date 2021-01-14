@@ -1,42 +1,31 @@
-import { useContext } from 'react';
-import PopupWithForm from './PopupWithForm';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import { propsPopupWithEditForm } from '../utils/constants.js';
-import cn from 'classnames';
-import { Field } from './Form';
+import React, { useContext } from "react";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import { propsPopupWithEditForm } from "../utils/constants";
+import PopupWithForm, { Error, Field } from "./PopupWithForm";
 
 const validators = {
   name: {
     required: (value) => {
-      return value === '';
+      return { valid: value !== "", message: "Вы пропустили это поле." };
     },
     minLength: (value) => {
-      return value.length < 2;
+      return {
+        valid: value.length > 2,
+        message: `Минимальное количество символов: 2. Длина текста сейчас: ${value.length} символ.`,
+      };
     },
   },
   about: {
     required: (value) => {
-      return value === '';
+      return { valid: value !== "", message: "Вы пропустили это поле." };
     },
     minLength: (value) => {
-      return value.length < 2;
+      return {
+        valid: value.length > 2,
+        message: `Минимальное количество символов: 2. Длина текста сейчас: ${value.length} символ.`,
+      };
     },
   },
-};
-
-const getErrorMessage = (typeOfError, value = '') => {
-  let errorMessage = '';
-  switch (typeOfError) {
-    case 'required':
-      errorMessage = 'Вы пропустили это поле.';
-      break;
-    case 'minLength':
-      errorMessage = `Минимальное количество символов: 2. Длина текста сейчас: ${value.length} символ.`;
-      break;
-    default:
-      errorMessage = '';
-  }
-  return errorMessage;
 };
 
 export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
@@ -58,56 +47,20 @@ export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateU
       onSubmit={handleSubmit}
       defaultValues={currentUser}
     >
-      <Field name="name">
-        {({ onChange, value, errors, ...inputProps }) => {
-          const typeOfError =
-            (!!errors && Object.keys(errors).find((key) => errors[key] === true)) || '';
-          const errorMessage = getErrorMessage(typeOfError, value);
-          return (
-            <>
-              <input
-                type="text"
-                className={cn('popup__input popup__input_type_name', {
-                  popup__input_type_error: errorMessage.length,
-                })}
-                placeholder="Заголовок профиля"
-                maxLength="40"
-                onChange={(evt) => onChange(evt.target.value)}
-                value={value}
-                {...inputProps}
-              />
-              <span className={cn('popup__error', { popup__error_visible: errorMessage.length })}>
-                {errorMessage}
-              </span>
-            </>
-          );
-        }}
-      </Field>
-      <Field name="about">
-        {({ onChange, errors, ...inputProps }) => {
-          const typeOfError =
-            (!!errors && Object.keys(errors).find((key) => errors[key] === true)) || '';
-          const errorMessage = getErrorMessage(typeOfError);
-
-          return (
-            <>
-              <input
-                type="text"
-                className={cn('popup__input popup__input_type_about', {
-                  popup__input_type_error: errorMessage.length,
-                })}
-                placeholder="Описание профиля"
-                maxLength="200"
-                onChange={(evt) => onChange(evt.target.value)}
-                {...inputProps}
-              />
-              <span className={cn('popup__error', { popup__error_visible: errorMessage.length })}>
-                {errorMessage}
-              </span>
-            </>
-          );
-        }}
-      </Field>
+      <Field name="name"
+             type="text"
+             className="popup__input popup__input_type_name"
+             errorClassName="popup__input_type_error"
+             placeholder="Название"
+             maxLength={30}/>
+      <Error name="name" className="popup__error" errorClassName="popup__error_visible"/>
+      <Field name="about"
+             type="text"
+             className="popup__input popup__input_type_about"
+             errorClassName="popup__input_type_error"
+             placeholder="Описание профиля"
+             maxLength={200}/>
+      <Error name="link" className="popup__error" errorClassName="popup__error_visible"/>
     </PopupWithForm>
   );
 }

@@ -1,8 +1,9 @@
 import PopupWithForm from './PopupWithForm';
 import { propsPopupWithConfirmForm } from '../utils/constants.js';
+import React from "react";
 
 export default function Confirm({ isOpen, isLoading, onClose, onSubmit }) {
-  const handleSubmit = (evt) => {
+  const handleSubmit = () => {
     onSubmit();
   };
 

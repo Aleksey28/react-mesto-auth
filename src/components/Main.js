@@ -1,7 +1,7 @@
-import { useContext } from 'react';
-import Card from './Card';
+import React, { useContext } from "react";
+import Card from "./Card";
 
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 export default function Main({
   onEditAvatar,
@@ -18,15 +18,15 @@ export default function Main({
     <main className="content">
       <section className="profile">
         <button className="profile__btn profile__btn_action_edit-avatar" onClick={onEditAvatar}>
-          <img src={currentUser.avatar} alt="Аватар." className="profile__avatar" />
-          <span className="profile__avatar-overlay"></span>
+          <img src={currentUser.avatar} alt="Аватар." className="profile__avatar"/>
+          <span className="profile__avatar-overlay"/>
         </button>
         <div className="profile__info">
           <h1 className="profile__name">{currentUser.name}</h1>
-          <button className="profile__btn profile__btn_action_edit" type="button" onClick={onEditProfile}></button>
+          <button className="profile__btn profile__btn_action_edit" type="button" onClick={onEditProfile}/>
           <p className="profile__about">{currentUser.about}</p>
         </div>
-        <button className="profile__btn profile__btn_action_add" type="button" onClick={onAddPlace}></button>
+        <button className="profile__btn profile__btn_action_add" type="button" onClick={onAddPlace}/>
       </section>
       <section>
         <ul className="cards">

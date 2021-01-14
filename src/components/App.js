@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react';
-import importedLogo from '../images/header-logo.svg';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-import ImagePopup from './ImagePopup';
-import EditProfilePopup from './EditProfilePopup';
-import EditAvatarPopup from './EditAvatarPopup';
-import AddPlacePopup from './AddPlacePopup';
-import { apiObject } from '../utils/api.js';
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
-import Confirm from './Confirm';
+import React, { useEffect, useState } from "react";
+import importedLogo from "../images/header-logo.svg";
+import Header from "./Header";
+import Main from "./Main";
+import Footer from "./Footer";
+import ImagePopup from "./ImagePopup";
+import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
+import AddPlacePopup from "./AddPlacePopup";
+import { apiObject } from "../utils/api";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
+import Confirm from "./Confirm";
 
 function App() {
   //Создаем стейты
@@ -18,8 +18,13 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState({});
-  const [currentUser, setCurrentUser] = useState({});
+  const [selectedCard, setSelectedCard] = useState < any > ({});
+  const [currentUser, setCurrentUser] = useState({
+    avatar: "https://planetabelarus.ru/temp_upload/medialibrary/b8d/b8d1bd9cfbecc799fcba00f2e7e602c4.jpg",
+    name: "Жак Ив Кусто",
+    about: "Исследователь",
+    _id: "",
+  });
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -182,7 +187,7 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header logo={importedLogo} />
+        <Header logo={importedLogo}/>
         <Main
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}
@@ -192,7 +197,7 @@ function App() {
           onCardLike={handleCardLike}
           onCardDelete={handleClickCardDelete}
         />
-        <Footer />
+        <Footer/>
         <AddPlacePopup
           isOpen={isAddPlacePopupOpen}
           isLoading={isLoading}
@@ -212,7 +217,7 @@ function App() {
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
         />
-        <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups} />
+        <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups}/>
         <Confirm
           isOpen={isConfirmOpen}
           isLoading={isLoading}
