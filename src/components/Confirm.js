@@ -1,5 +1,5 @@
-import PopupWithForm from './PopupWithForm';
-import { propsPopupWithConfirmForm } from '../utils/constants.js';
+import PopupWithForm from "./PopupWithForm";
+import { propsPopupWithConfirmForm } from "../utils/constants.js";
 import React from "react";
 
 export default function Confirm({ isOpen, isLoading, onClose, onSubmit }) {
@@ -16,6 +16,7 @@ export default function Confirm({ isOpen, isLoading, onClose, onSubmit }) {
       isLoad={isLoading}
       onClose={onClose}
       onSubmit={handleSubmit}
+      defaultValues={{}}
     />
   );
 }

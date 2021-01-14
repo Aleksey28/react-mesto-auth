@@ -5,7 +5,7 @@ import React from "react";
 const validators = {
   link: {
     required: (value) => {
-      return { valid: value !== "", message: "Вы пропустили это поле." };
+      return { valid: !!value, message: "Вы пропустили это поле." };
     },
     isUrl: (value) => {
       return { valid: /http(s?):\/\/[-\w.]{3,}\.[A-Za-z]{2,3}/.test(value), message: "Введите адрес сайта." };
@@ -28,13 +28,14 @@ export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAv
       validators={validators}
       onClose={onClose}
       onSubmit={handleSubmit}
+      defaultValues={{ link: "" }}
     >
       <Field name="link"
              type="text"
              className="popup__input popup__input_type_link"
              errorClassName="popup__input_type_error"
              placeholder="Ссылка на картинку"/>
-      <Error name="name" className="popup__error" errorClassName="popup__error_visible"/>
+      <Error name="link" className="popup__error" errorClassName="popup__error_visible"/>
     </PopupWithForm>
   );
 }

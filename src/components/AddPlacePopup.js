@@ -39,6 +39,12 @@ export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }
       validators={validators}
       onClose={onClose}
       onSubmit={handleSubmit}
+      defaultValues={
+        {
+          name: "",
+          link: "",
+        }
+      }
     >
       <Field name="name"
              type="text"

@@ -18,13 +18,8 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [selectedCard, setSelectedCard] = useState < any > ({});
-  const [currentUser, setCurrentUser] = useState({
-    avatar: "https://planetabelarus.ru/temp_upload/medialibrary/b8d/b8d1bd9cfbecc799fcba00f2e7e602c4.jpg",
-    name: "Жак Ив Кусто",
-    about: "Исследователь",
-    _id: "",
-  });
+  const [selectedCard, setSelectedCard] = useState({});
+  const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -210,7 +205,6 @@ function App() {
           onClose={closeAllPopups}
           onUpdateUser={handleUpdateUser}
         />
-        )
         <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           isLoading={isLoading}

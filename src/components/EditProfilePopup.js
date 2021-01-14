@@ -6,7 +6,10 @@ import PopupWithForm, { Error, Field } from "./PopupWithForm";
 const validators = {
   name: {
     required: (value) => {
-      return { valid: value !== "", message: "Вы пропустили это поле." };
+      return {
+        valid: !!value,
+        message: "Вы пропустили это поле.",
+      };
     },
     minLength: (value) => {
       return {
@@ -17,7 +20,10 @@ const validators = {
   },
   about: {
     required: (value) => {
-      return { valid: value !== "", message: "Вы пропустили это поле." };
+      return {
+        valid: !!value,
+        message: "Вы пропустили это поле.",
+      };
     },
     minLength: (value) => {
       return {
@@ -60,7 +66,7 @@ export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateU
              errorClassName="popup__input_type_error"
              placeholder="Описание профиля"
              maxLength={200}/>
-      <Error name="link" className="popup__error" errorClassName="popup__error_visible"/>
+      <Error name="about" className="popup__error" errorClassName="popup__error_visible"/>
     </PopupWithForm>
   );
 }
