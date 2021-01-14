@@ -11,6 +11,8 @@ import AddPlacePopup from "./AddPlacePopup";
 import { apiObject } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
+import LogIn from "./LogIn";
+import SignUp from "./SingUp";
 
 function App() {
   //Создаем стейты
@@ -188,9 +190,9 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" onKeyDown={handleClickOnButton}>
+        <Header logo={importedLogo}/>
         <Switch>
           <Route exact path="/">
-            <Header logo={importedLogo}/>
             <Main
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
@@ -227,8 +229,12 @@ function App() {
               onSubmit={handleCardDelete}
             />
           </Route>
-          <Route path="/sign-in"></Route>
-          <Route path="/sign-out"></Route>
+          <Route path="/sign-in">
+            <LogIn/>
+          </Route>
+          <Route path="/sign-up">
+            <SignUp />
+          </Route>
         </Switch>
       </div>
     </CurrentUserContext.Provider>
