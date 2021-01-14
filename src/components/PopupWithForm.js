@@ -57,6 +57,12 @@ export default function PopupWithForm({
     onClose();
   };
 
+  const handleClickOnBackground = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      handleClose();
+    }
+  };
+
   //Вызываем валидацию на каждый ввод в форму
   useEffect(() => {
     //Получаем все ключи
@@ -99,7 +105,10 @@ export default function PopupWithForm({
   const formContextValue = { onChangeInput, isInvalid, formErrors, showErrors, formValues };
 
   return (
-    <div className={cn(`popup popup_type_${name}`, { popup_opened: isOpen })} data-name={name}>
+    <div className={cn(`popup popup_type_${name}`, { popup_opened: isOpen })}
+         data-name={name}
+         onClick={handleClickOnBackground}
+    >
       <form
         className="popup__container popup__container_type_form"
         name="container"
