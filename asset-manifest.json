@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.2b35329d.chunk.css",
+    "main.js": "/static/js/main.dc4cdd19.chunk.js",
+    "main.js.map": "/static/js/main.dc4cdd19.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e76f7f95.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e76f7f95.js.map",
+    "static/js/2.5cd616c4.chunk.js": "/static/js/2.5cd616c4.chunk.js",
+    "static/js/2.5cd616c4.chunk.js.map": "/static/js/2.5cd616c4.chunk.js.map",
+    "static/js/3.d8fb54b9.chunk.js": "/static/js/3.d8fb54b9.chunk.js",
+    "static/js/3.d8fb54b9.chunk.js.map": "/static/js/3.d8fb54b9.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.2b35329d.chunk.css.map": "/static/css/main.2b35329d.chunk.css.map",
+    "static/js/2.5cd616c4.chunk.js.LICENSE.txt": "/static/js/2.5cd616c4.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/profile-edit-btn.a3778f54.svg",
+    "static/media/header-logo.ff16f24b.svg": "/static/media/header-logo.ff16f24b.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e76f7f95.js",
+    "static/js/2.5cd616c4.chunk.js",
+    "static/css/main.2b35329d.chunk.css",
+    "static/js/main.dc4cdd19.chunk.js"
+  ]
+}
