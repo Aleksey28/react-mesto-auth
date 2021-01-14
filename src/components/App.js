@@ -179,9 +179,14 @@ function App() {
     setIsConfirmOpen(true);
   };
 
+  const handleClickOnButton = (evt) => {
+    if (evt.key === "Escape") {
+      closeAllPopups();
+    }
+  };
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <div className="page">
+      <div className="page" onKeyDown={handleClickOnButton}>
         <Header logo={importedLogo}/>
         <Main
           onEditProfile={handleEditProfileClick}

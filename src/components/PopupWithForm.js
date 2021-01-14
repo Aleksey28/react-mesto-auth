@@ -31,6 +31,15 @@ export default function PopupWithForm({
     setFormValues(defaultValues);
   }, [defaultValues]);
 
+  useEffect(() => {
+    if(!isOpen){
+      //Обнуляем стейт отображения ошибок
+      setShowErrors({});
+      //Устанавливаем дефолтные значения
+      setFormValues(defaultValues);
+    }
+  }, [isOpen])
+
   //Обработчик изменения любого инпута
   const onChangeInput = (name, value) => {
     //Обновляем стейт всех значений формы
@@ -44,17 +53,15 @@ export default function PopupWithForm({
   //Обработчик submit
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    //Обнуляем стейт отображения ошибок
+    setShowErrors({});
     onSubmit(formValues);
   };
 
-  //Обработчик закрытия
-  const handleClose = () => {
-    //Обнуляем стейт отображения ошибок
-    setShowErrors({});
-    //Устанавливаем дефолтные значения
-    setFormValues(defaultValues);
-    //Закрываем
-    onClose();
+  const handleClickOnBackground = (evt) => {
+    if (evt.target === evt.currentTarget) {
+      onClose();
+    }
   };
 
   //Вызываем валидацию на каждый ввод в форму
@@ -99,7 +106,10 @@ export default function PopupWithForm({
   const formContextValue = { onChangeInput, isInvalid, formErrors, showErrors, formValues };
 
   return (
-    <div className={cn(`popup popup_type_${name}`, { popup_opened: isOpen })} data-name={name}>
+    <div className={cn(`popup popup_type_${name}`, { popup_opened: isOpen })}
+         data-name={name}
+         onClick={handleClickOnBackground}
+    >
       <form
         className="popup__container popup__container_type_form"
         name="container"
@@ -109,7 +119,7 @@ export default function PopupWithForm({
         <button
           className="popup__btn popup__btn_action_close"
           type="button"
-          onClick={handleClose}
+          onClick={onClose}
         />
         <h2 className="popup__title">{title}</h2>
         <PopupWithFormContext.Provider value={formContextValue}>{children}</PopupWithFormContext.Provider>
