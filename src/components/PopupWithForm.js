@@ -38,7 +38,7 @@ export default function PopupWithForm({
       //Устанавливаем дефолтные значения
       setFormValues(defaultValues);
     }
-  }, [isOpen])
+  }, [isOpen, defaultValues])
 
   //Обработчик изменения любого инпута
   const onChangeInput = (name, value) => {
