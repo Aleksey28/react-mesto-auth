@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import { propsPopupWithEditForm } from "../utils/constants";
-import PopupWithForm, { Error, Field } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 
 const validators = {
   name: {
@@ -34,6 +34,11 @@ const validators = {
   },
 };
 
+const inputsList = [
+  { name: "name", placeholder: "Название", maxLength: 30 },
+  { name: "about", placeholder: "Описание профиля", maxLength: 200 },
+];
+
 export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateUser }) {
   const handleSubmit = (values) => {
     onUpdateUser(values);
@@ -52,21 +57,7 @@ export default function EditProfilePopup({ isOpen, isLoading, onClose, onUpdateU
       onClose={onClose}
       onSubmit={handleSubmit}
       defaultValues={currentUser}
-    >
-      <Field name="name"
-             type="text"
-             className="popup__input popup__input_type_name"
-             errorClassName="popup__input_type_error"
-             placeholder="Название"
-             maxLength={30}/>
-      <Error name="name" className="popup__error" errorClassName="popup__error_visible"/>
-      <Field name="about"
-             type="text"
-             className="popup__input popup__input_type_about"
-             errorClassName="popup__input_type_error"
-             placeholder="Описание профиля"
-             maxLength={200}/>
-      <Error name="about" className="popup__error" errorClassName="popup__error_visible"/>
-    </PopupWithForm>
+      inputsList={inputsList}
+    />
   );
 }
