@@ -31,12 +31,13 @@ export const propsPopupWithConfirmForm = {
   },
 };
 
-export const validationSettings = {
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__btn_action_submit',
-  inactiveButtonClass: 'popup__btn__disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible',
+export const propsAuthLogIn = {
+  title: 'Вход',
+  name: 'login',
+  submitStates: {
+    static: 'Войти',
+    loading: 'Входим...',
+  },
 };
 
 export const apiSettings = {

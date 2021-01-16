@@ -136,16 +136,6 @@ export function Field({ name, children }) {
   });
 }
 
-//Компонент ошибки формы
-export function Error({ name, children }) {
-  //Получаем значения контекста формы
-  const { formErrors, showErrors } = useContext(FormContext);
-
-
-
-  return children(<div></div>);
-}
-
 export function Submit({ children }) {
   //Получаем значение валидности кнопки из формы
   const { isInvalid } = useContext(FormContext);
