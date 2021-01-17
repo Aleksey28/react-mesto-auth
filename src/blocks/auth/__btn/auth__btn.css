@@ -6,8 +6,14 @@
   line-height: 22px;
   height: 50px;
   margin-bottom: 15px;
+  transition: background-color .2s ease-in;
   text-align: center;
   color: #000;
   border-radius: 2px;
   background: #fff;
+  cursor: pointer;
+}
+
+.auth__btn:hover {
+  background: rgba(255, 255, 255, 0.8);
 }
