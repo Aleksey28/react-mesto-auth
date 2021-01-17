@@ -3,6 +3,7 @@
 @import url(./__input/auth__input.css);
 @import url(./__btn/auth__btn.css);
 @import url(./__btn/_disabled/auth__btn_disabled.css);
+@import url(./__link/auth__link.css);
 
 
 .auth {

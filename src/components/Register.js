@@ -1,6 +1,7 @@
 import React from "react";
 import Auth from "./Auth";
 import { propsAuthRegister } from "../utils/constants";
+import { NavLink } from "react-router-dom";
 
 const validators = {
   email: {
@@ -46,6 +47,8 @@ export default function Register() {
           isLoading={false}
           validators={validators}
           inputsList={inputsList}
-          onSubmit={() => { console.log("message");}}/>
+          onSubmit={() => { console.log("message");}}>
+      <NavLink to="/sign-in" className="auth__link">Уже зарегистрированы? Войти</NavLink>
+    </Auth>
   );
 }
