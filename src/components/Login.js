@@ -26,16 +26,16 @@ const validators = {
     },
     minLength: (value) => {
       return {
-        valid: value.length > 2,
-        message: `Минимальное количество символов: 2. Длина текста сейчас: ${value.length} символ.`,
+        valid: value.length > 7,
+        message: `Минимальное количество символов: 8. Длина текста сейчас: ${value.length} символ.`,
       };
     },
   },
 };
 
 const inputsList = [
-  { name: "email", placeholder: "Email", maxLength: 30 },
-  { name: "password", placeholder: "Пароль", maxLength: 200 },
+  { name: "email", placeholder: "Email"},
+  { name: "password", placeholder: "Пароль"},
 ];
 
 export default function Login() {
