@@ -1,16 +1,16 @@
 @import url(./__logo/header__logo.css);
+@import url(./__nlink/header__nlink.css);
 
 .header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   align-content: space-between;
-
+  justify-content: space-between;
   width: calc(100% - 199px * 2);
   min-width: calc(1024px - 100px * 2);
   max-width: calc(1280px - 199px * 2);
   padding-top: 45px;
-
   border-bottom: 1px solid rgba(84, 84, 84, .7);
 }
 
