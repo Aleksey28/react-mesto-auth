@@ -1,0 +1,12 @@
+.auth__btn {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  height: 50px;
+  text-align: center;
+  color: #000;
+  border-radius: 2px;
+  background: #fff;
+}

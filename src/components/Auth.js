@@ -40,13 +40,15 @@ export default function Auth({ name, title, submitStates, isLoading, children, i
       isOpen={true}
     >
       <p className="auth__title">{title}</p>
-      {fieldsList}
+      <fieldset className="auth__fieldset">
+        {fieldsList}
+      </fieldset>
       <Submit>
         {
           ({ disabled }) => (
             <button
               className={cn("auth__btn", "auth__btn_action_submit", {
-                auth__btn__disabled: disabled,
+                auth__btn_disabled: disabled,
               })}
               type="submit"
               disabled={disabled}
