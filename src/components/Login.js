@@ -38,7 +38,7 @@ const inputsList = [
   { name: "password", placeholder: "Пароль", maxLength: 200 },
 ];
 
-export default function LogIn() {
+export default function Login() {
   return (
     <Auth name={propsAuthLogIn.name}
           title={propsAuthLogIn.title}

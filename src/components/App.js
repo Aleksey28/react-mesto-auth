@@ -11,7 +11,7 @@ import AddPlacePopup from "./AddPlacePopup";
 import { apiObject } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
-import LogIn from "./LogIn";
+import Login from "./Login";
 import SignUp from "./SingUp";
 
 function App() {
@@ -230,7 +230,7 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <LogIn/>
+            <Login/>
           </Route>
           <Route path="/sign-up">
             <SignUp />
