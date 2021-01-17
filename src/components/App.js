@@ -12,7 +12,7 @@ import { apiObject } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
 import Login from "./Login";
-import SignUp from "./SingUp";
+import SignUp from "./Register";
 
 function App() {
   //Создаем стейты
