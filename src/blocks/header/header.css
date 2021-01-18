@@ -1,24 +1,21 @@
+@import url(./__main/hrader__main.css);
 @import url(./__logo/header__logo.css);
+@import url(./__menu/header__menu.css);
+@import url(./__menu/_vertical/header__menu_vertical.css);
+@import url(./__menu/_hidden/header__menu_hidden.css);
 @import url(./__nlink/header__nlink.css);
+@import url(./__email/header__email.css);
+@import url(./__btn/header__btn.css);
+@import url(./__btn/_type/header__btn_type_close.css);
+@import url(./__btn/_type/header__btn_type_open.css);
+
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  align-content: space-between;
-  justify-content: space-between;
+  flex-direction: column;
   width: calc(100% - 199px * 2);
   min-width: calc(1024px - 100px * 2);
   max-width: calc(1280px - 199px * 2);
-  padding: 45px 0 36px;
-  border-bottom: 1px solid rgba(84, 84, 84, .7);
-  box-sizing: border-box;
-}
-
-@media screen and (max-width: 1280px) {
-  .header {
-    padding: calc((100vw - 320px) / (1280 - 320) * (45 - 24) + 24px) calc((100vw - 320px) / (1280 - 320) * (0 - 26) + 26px) calc((100vw - 320px) / (1280 - 320) * (36 - 23) + 23px);
-  }
 }
 
 @media screen and (max-width: 1024px) {
