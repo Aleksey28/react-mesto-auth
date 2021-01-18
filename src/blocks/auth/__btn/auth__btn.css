@@ -1,0 +1,27 @@
+.auth__btn {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  height: 50px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: background-color .2s ease-in;
+  text-align: center;
+  color: #000;
+  border-radius: 2px;
+  background: #fff;
+}
+
+.auth__btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@media screen and (max-width: 600px) {
+  .auth__btn {
+    font-size: calc((100vw - 320px) / (600 - 320) * (18 - 16) + 16px);
+    line-height: calc((100vw - 320px) / (600 - 320) * (22 - 19) + 19px);
+    margin-bottom: calc((100vw - 320px) / (600 - 320) * (15 - 20) + 20px);
+  }
+}

@@ -9,10 +9,7 @@
 @import url(./blocks/footer/footer.css);
 @import url(./blocks/popup/popup.css);
 @import url(./blocks/popup/_opened/popup_opened.css);
-@import url(./blocks/popup/_type/popup_type_add.css);
-@import url(./blocks/popup/_type/popup_type_edit-avatar.css);
-@import url(./blocks/popup/_type/popup_type_edit.css);
 @import url(./blocks/popup/_type/popup_type_show.css);
-@import url(./blocks/popup/_type/popup_type_confirm.css);
 @import url(./blocks/like/like.css);
 @import url(./blocks/error/error.css);
+@import url(./blocks/auth/auth.css);

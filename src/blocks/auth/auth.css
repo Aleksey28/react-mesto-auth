@@ -1,0 +1,23 @@
+@import url(./__title/auth__title.css);
+@import url(./__fieldset/auth__fieldset.css);
+@import url(./__input/auth__input.css);
+@import url(./__error/auth__error.css);
+@import url(./__error/_visible/auth__error_visible.css);
+@import url(./__input/_error/auth__input_error.css);
+@import url(./__btn/auth__btn.css);
+@import url(./__btn/_disabled/auth__btn_disabled.css);
+@import url(./__link/auth__link.css);
+
+.auth {
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 30px * 2);
+  max-width: 358px;
+  margin: 60px auto 0;
+}
+
+@media screen and (max-width: 600px) {
+  .auth {
+    margin-top: calc((100vw - 320px) / (600 - 320) * (60 - 40) + 40px);
+  }
+}

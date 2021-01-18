@@ -1,0 +1,7 @@
+.auth__input_error {
+  margin-bottom: 6px;
+}
+
+.auth__input_error:last-of-type {
+  margin-bottom: 6px;
+}

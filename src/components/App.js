@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import importedLogo from "../images/header-logo.svg";
 import Header from "./Header";
 import Main from "./Main";
@@ -10,6 +11,9 @@ import AddPlacePopup from "./AddPlacePopup";
 import { apiObject } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
+import Login from "./Login";
+import SignUp from "./Register";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   //Создаем стейты
@@ -18,6 +22,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(true);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -86,6 +91,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsConfirmOpen(false);
     setIsImagePopupOpen(false);
+    setIsInfoTooltipOpen(false);
   };
 
   //Обработчик обновления данных пользователя
@@ -188,41 +194,52 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" onKeyDown={handleClickOnButton}>
         <Header logo={importedLogo}/>
-        <Main
-          onEditProfile={handleEditProfileClick}
-          onAddPlace={handleAddPlaceClick}
-          onEditAvatar={handleEditAvatarClick}
-          cards={cards}
-          onCardClick={handleCardClick}
-          onCardLike={handleCardLike}
-          onCardDelete={handleClickCardDelete}
-        />
-        <Footer/>
-        <AddPlacePopup
-          isOpen={isAddPlacePopupOpen}
-          isLoading={isLoading}
-          onClose={closeAllPopups}
-          onAddPlace={handleAddPlace}
-        />
-        <EditProfilePopup
-          isOpen={isEditProfilePopupOpen}
-          isLoading={isLoading}
-          onClose={closeAllPopups}
-          onUpdateUser={handleUpdateUser}
-        />
-        <EditAvatarPopup
-          isOpen={isEditAvatarPopupOpen}
-          isLoading={isLoading}
-          onClose={closeAllPopups}
-          onUpdateAvatar={handleUpdateAvatar}
-        />
-        <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups}/>
-        <Confirm
-          isOpen={isConfirmOpen}
-          isLoading={isLoading}
-          onClose={closeAllPopups}
-          onSubmit={handleCardDelete}
-        />
+        <Switch>
+          <Route exact path="/">
+            <Main
+              onEditProfile={handleEditProfileClick}
+              onAddPlace={handleAddPlaceClick}
+              onEditAvatar={handleEditAvatarClick}
+              cards={cards}
+              onCardClick={handleCardClick}
+              onCardLike={handleCardLike}
+              onCardDelete={handleClickCardDelete}
+            />
+            <Footer/>
+            <AddPlacePopup
+              isOpen={isAddPlacePopupOpen}
+              isLoading={isLoading}
+              onClose={closeAllPopups}
+              onAddPlace={handleAddPlace}
+            />
+            <EditProfilePopup
+              isOpen={isEditProfilePopupOpen}
+              isLoading={isLoading}
+              onClose={closeAllPopups}
+              onUpdateUser={handleUpdateUser}
+            />
+            <EditAvatarPopup
+              isOpen={isEditAvatarPopupOpen}
+              isLoading={isLoading}
+              onClose={closeAllPopups}
+              onUpdateAvatar={handleUpdateAvatar}
+            />
+            <ImagePopup card={selectedCard} isOpen={isImagePopupOpen} onClose={closeAllPopups}/>
+            <Confirm
+              isOpen={isConfirmOpen}
+              isLoading={isLoading}
+              onClose={closeAllPopups}
+              onSubmit={handleCardDelete}
+            />
+          </Route>
+          <Route path="/sign-in">
+            <Login/>
+          </Route>
+          <Route path="/sign-up">
+            <SignUp/>
+            <InfoTooltip isSuccess={true} isOpen={isInfoTooltipOpen} onClose={closeAllPopups}/>
+          </Route>
+        </Switch>
       </div>
     </CurrentUserContext.Provider>
   );

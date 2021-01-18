@@ -1,14 +1,11 @@
 .popup__btn_action_close {
   position: absolute;
-  top: -39px;
-  right: -38px;
-
-  width: 42px;
-  height: 42px;
-
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
   transition: opacity .2s ease-in;
-  transform: rotate(45deg);
-
+  transform: rotate(45deg) translate(0, -141%);
   border: none;
   border-image-width: 0;
   background-color: rgba(0, 0, 0, 0);
@@ -21,19 +18,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .popup__btn_action_close{
-    top: calc((100vw - 320px) / (600 - 320) * (-39 + 28) - 28px);
-    right: calc((100vw - 320px) / (600 - 320) * (-38 + 28) - 28px);
-
-    width: calc((100vw - 320px) / (600 - 320) * (42 - 30) + 30px);
-    height: calc((100vw - 320px) / (600 - 320) * (42 - 30) + 30px);
-  }
-}
-
-
-@media screen and (max-width: 320px) {
-  .popup__btn_action_close{
-    top: -28px;
-    right: -28px;
+  .popup__btn_action_close {
+    right: 50%;
+    transform: rotate(45deg) translate(-100%, -170%);
+    width: calc((100vw - 320px) / (600 - 320) * (40 - 30) + 30px);
+    height: calc((100vw - 320px) / (600 - 320) * (40 - 30) + 30px);
   }
 }
