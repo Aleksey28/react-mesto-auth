@@ -19,8 +19,8 @@
 
 @media screen and (max-width: 600px) {
   .popup__btn_action_close {
-    right: auto;
-    transform: rotate(45deg) translate(-132%, -133%);
+    right: 50%;
+    transform: rotate(45deg) translate(-100%, -170%);
     width: calc((100vw - 320px) / (600 - 320) * (40 - 30) + 30px);
     height: calc((100vw - 320px) / (600 - 320) * (40 - 30) + 30px);
   }
