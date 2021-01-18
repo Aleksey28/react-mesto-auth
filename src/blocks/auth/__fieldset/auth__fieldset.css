@@ -1,8 +1,14 @@
 .auth__fieldset {
   display: flex;
   flex-direction: column;
-  height: 350px;
+  height: 300px;
   margin: 0;
   padding: 0;
   border: none;
+}
+
+@media screen and (max-width: 600px) {
+  .auth__fieldset {
+    height: calc((100vw - 320px) / (600 - 320) * (300 - 257) + 257px);
+  }
 }
