@@ -5,10 +5,10 @@
 @import url(./__btn/_disabled/auth__btn_disabled.css);
 @import url(./__link/auth__link.css);
 
-
 .auth {
   display: flex;
   flex-direction: column;
-  width: 358px;
+  width: calc(100% - 30px * 2);
+  max-width: 358px;
   margin: 60px auto 0;
 }

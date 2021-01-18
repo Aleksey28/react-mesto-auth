@@ -1,11 +1,15 @@
 .auth__link {
   font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
-  font-style: normal;
-  font-weight: normal;
   font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
   line-height: 17px;
-
+  transition: opacity .2s ease-in;
   text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
 
-  color: #FFFFFF;
+.auth__link:hover {
+  opacity: .6;
 }
