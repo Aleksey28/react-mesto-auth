@@ -1,5 +1,5 @@
 import { propsPopupWithAddForm } from "../utils/constants";
-import PopupWithForm, { Error, Field } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
 const validators = {
@@ -24,6 +24,11 @@ const validators = {
   },
 };
 
+const inputsList = [
+  { name: "name", placeholder: "Название", maxLength: 30 },
+  { name: "link", placeholder: "Ссылка на картинку" },
+];
+
 export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }) {
   const handleSubmit = (values) => {
     onAddPlace(values);
@@ -45,20 +50,7 @@ export default function AddPlacePopup({ isOpen, isLoading, onClose, onAddPlace }
           link: "",
         }
       }
-    >
-      <Field name="name"
-             type="text"
-             className="popup__input popup__input_type_name"
-             errorClassName="popup__input_type_error"
-             placeholder="Название"
-             maxLength={30}/>
-      <Error name="name" className="popup__error" errorClassName="popup__error_visible"/>
-      <Field name="link"
-             type="text"
-             className="popup__input popup__input_type_link"
-             errorClassName="popup__input_type_error"
-             placeholder="Ссылка на картинку"/>
-      <Error name="link" className="popup__error" errorClassName="popup__error_visible"/>
-    </PopupWithForm>
+      inputsList={inputsList}
+    />
   );
 }

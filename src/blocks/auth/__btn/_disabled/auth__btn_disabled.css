@@ -1,0 +1,5 @@
+.auth__btn_disabled {
+  user-select: none;
+  pointer-events: none;
+  opacity: .2;
+}

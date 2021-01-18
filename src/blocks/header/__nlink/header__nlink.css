@@ -1,0 +1,15 @@
+.header__nlink {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 22px;
+  transition: opacity .2s ease-in;
+  text-align: right;
+  text-decoration: none;
+  color: #fff;
+}
+
+.header__nlink:hover {
+  opacity: .6;
+}

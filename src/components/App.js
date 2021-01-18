@@ -11,8 +11,8 @@ import AddPlacePopup from "./AddPlacePopup";
 import { apiObject } from "../utils/api";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
-import LogIn from "./LogIn";
-import SignUp from "./SingUp";
+import Login from "./Login";
+import SignUp from "./Register";
 
 function App() {
   //Создаем стейты
@@ -230,7 +230,7 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <LogIn/>
+            <Login/>
           </Route>
           <Route path="/sign-up">
             <SignUp />

@@ -1,0 +1,9 @@
+.auth__error {
+  font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 15px;
+  visibility: hidden;
+  color: #f00;
+}

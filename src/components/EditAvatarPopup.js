@@ -1,5 +1,5 @@
 import { propsPopupWithEditAvatarForm } from "../utils/constants";
-import PopupWithForm, { Error, Field } from "./PopupWithForm";
+import PopupWithForm from "./PopupWithForm";
 import React from "react";
 
 const validators = {
@@ -12,6 +12,10 @@ const validators = {
     },
   },
 };
+
+const inputsList = [
+  { name: "link", placeholder: "Ссылка на картинку" },
+];
 
 export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAvatar }) {
   const handleSubmit = (values) => {
@@ -29,13 +33,7 @@ export default function EditAvatarPopup({ isOpen, isLoading, onClose, onUpdateAv
       onClose={onClose}
       onSubmit={handleSubmit}
       defaultValues={{ link: "" }}
-    >
-      <Field name="link"
-             type="text"
-             className="popup__input popup__input_type_link"
-             errorClassName="popup__input_type_error"
-             placeholder="Ссылка на картинку"/>
-      <Error name="link" className="popup__error" errorClassName="popup__error_visible"/>
-    </PopupWithForm>
+      inputsList={inputsList}
+    />
   );
 }
