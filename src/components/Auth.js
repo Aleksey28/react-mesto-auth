@@ -12,7 +12,7 @@ export default function Auth({ name, title, submitStates, isLoading, children, i
               <input type="text"
                      className={
                        cn(`auth__input auth__input_type_${item.name}`, {
-                         "auth__input_type_error": isInvalid,
+                         "auth__input_error": isInvalid,
                        })
                      }
                      {...item}

@@ -27,7 +27,7 @@ const validators = {
     },
     minLength: (value) => {
       return {
-        valid: value.length > 2,
+        valid: value.length > 7,
         message: `Минимальное количество символов: 8. Длина текста сейчас: ${value.length} символ.`,
       };
     },
