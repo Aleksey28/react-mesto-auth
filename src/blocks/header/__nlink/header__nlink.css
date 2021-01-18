@@ -8,8 +8,16 @@
   text-align: right;
   text-decoration: none;
   color: #fff;
+  margin-top: 7px;
 }
 
 .header__nlink:hover {
   opacity: .6;
+}
+
+@media screen and (max-width: 600px) {
+  .header__nlink {
+    font-size: 14px;
+    line-height: 17px;
+  }
 }

@@ -15,3 +15,9 @@
   max-width: 358px;
   margin: 60px auto 0;
 }
+
+@media screen and (max-width: 600px) {
+  .auth {
+    margin-top: calc((100vw - 320px) / (600 - 320) * (60 - 40) + 40px);
+  }
+}
