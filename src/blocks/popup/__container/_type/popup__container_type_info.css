@@ -1,0 +1,10 @@
+.popup__container_align_center {
+  align-items: center;
+  padding: 60px 36px;
+}
+
+@media screen and (max-width: 600px) {
+  .popup__container_align_center {
+    padding: calc((100vw - 320px) / (600 - 320) * (60 - 50) + 50px) calc((100vw - 320px) / (600 - 320) * (36 - 18) + 18px);
+  }
+}

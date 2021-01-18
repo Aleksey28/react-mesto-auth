@@ -13,6 +13,7 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Confirm from "./Confirm";
 import Login from "./Login";
 import SignUp from "./Register";
+import InfoTooltip from "./InfoTooltip";
 
 function App() {
   //Создаем стейты
@@ -21,6 +22,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(true);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
@@ -89,6 +91,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsConfirmOpen(false);
     setIsImagePopupOpen(false);
+    setIsInfoTooltipOpen(false);
   };
 
   //Обработчик обновления данных пользователя
@@ -233,7 +236,8 @@ function App() {
             <Login/>
           </Route>
           <Route path="/sign-up">
-            <SignUp />
+            <SignUp/>
+            <InfoTooltip isSuccess={true} isOpen={isInfoTooltipOpen} onClose={closeAllPopups}/>
           </Route>
         </Switch>
       </div>
