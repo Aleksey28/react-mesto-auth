@@ -33,7 +33,7 @@ class Api {
   async tokenCheck() {
     const params = {
       relativePath: "/users/me",
-      method: "POST",
+      method: "GET",
       headers: {
         authorization: "fcd9a632-5cad-436c-b58e-4c80d498006a",
       },
@@ -44,7 +44,7 @@ class Api {
 
   async signUp({ password, email }) {
     const params = {
-      relativePath: "/users/me",
+      relativePath: "/signup",
       method: "POST",
       body: JSON.stringify({ password, email }),
     };
@@ -54,7 +54,7 @@ class Api {
 
   async signIn({ password, email }) {
     const params = {
-      relativePath: "/users/me",
+      relativePath: "/signin",
       method: "POST",
       body: JSON.stringify({ password, email }),
     };

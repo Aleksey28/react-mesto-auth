@@ -14,19 +14,25 @@ import Confirm from "./Confirm";
 import Login from "./Login";
 import SignUp from "./Register";
 import InfoTooltip from "./InfoTooltip";
+import { apiAuthObject } from "../utils/apiAuth";
 
 function App() {
+
   //Создаем стейты
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(true);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [infoTooltipProps, setInfoTooltipProps] = useState({
+    success: true,
+    message: "",
+  });
 
   //Загружаем данные карточек один раз при сборке
   useEffect(() => {
@@ -190,6 +196,30 @@ function App() {
       closeAllPopups();
     }
   };
+
+  const handleRegistration = (data) => {
+    setIsLoading(true);
+    apiAuthObject.signUp(data)
+      .then((res) => {
+        debugger;
+        setInfoTooltipProps({
+          success: true,
+          message: "Вы успешно зарегистрировались!",
+        });
+      })
+      .catch((error) => {
+        debugger;
+        setInfoTooltipProps({
+          success: false,
+          message: error,
+        });
+      })
+      .finally(() => {
+        setIsInfoTooltipOpen(true);
+        setIsLoading(false);
+      });
+  };
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" onKeyDown={handleClickOnButton}>
@@ -236,8 +266,11 @@ function App() {
             <Login/>
           </Route>
           <Route path="/sign-up">
-            <SignUp/>
-            <InfoTooltip isSuccess={true} isOpen={isInfoTooltipOpen} onClose={closeAllPopups}/>
+            <SignUp onRegistration={handleRegistration}/>
+            <InfoTooltip isSuccess={infoTooltipProps.success}
+                         message={infoTooltipProps.message}
+                         isOpen={isInfoTooltipOpen}
+                         onClose={closeAllPopups}/>
           </Route>
         </Switch>
       </div>
