@@ -197,28 +197,51 @@ function App() {
     }
   };
 
+  //Обработчик регистрации
   const handleRegistration = (data) => {
     setIsLoading(true);
     apiAuthObject.signUp(data)
       .then((res) => {
-        debugger;
         setInfoTooltipProps({
           success: true,
           message: "Вы успешно зарегистрировались!",
         });
       })
       .catch((error) => {
-        debugger;
         setInfoTooltipProps({
           success: false,
           message: error,
         });
       })
       .finally(() => {
-        setIsInfoTooltipOpen(true);
         setIsLoading(false);
       });
   };
+
+  //Обработчик авторизации
+  const handleAuthorization = (data) => {
+    setIsLoading(true);
+    apiAuthObject.signIn(data)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+        }
+      })
+      .catch((error) => {
+        setInfoTooltipProps({
+          success: false,
+          message: error,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  //Эффект открытия попапа с информацией после действий регистрации и авторизации
+  useEffect(() => {
+    setIsInfoTooltipOpen(true);
+  }, [infoTooltipProps]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -263,7 +286,7 @@ function App() {
             />
           </Route>
           <Route path="/sign-in">
-            <Login/>
+            <Login onAuthorization={handleAuthorization}/>
           </Route>
           <Route path="/sign-up">
             <SignUp onRegistration={handleRegistration}/>
