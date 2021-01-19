@@ -14,6 +14,7 @@ import Confirm from "./Confirm";
 import Login from "./Login";
 import SignUp from "./Register";
 import InfoTooltip from "./InfoTooltip";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   //Создаем стейты
@@ -22,11 +23,12 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
-  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(true);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState({});
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
 
   //Загружаем данные карточек один раз при сборке
   useEffect(() => {
@@ -193,9 +195,9 @@ function App() {
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page" onKeyDown={handleClickOnButton}>
-        <Header logo={importedLogo}/>
+        <Header logo={importedLogo} loggedIn={loggedIn}/>
         <Switch>
-          <Route exact path="/">
+          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
@@ -205,7 +207,6 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleClickCardDelete}
             />
-            <Footer/>
             <AddPlacePopup
               isOpen={isAddPlacePopupOpen}
               isLoading={isLoading}
@@ -231,7 +232,8 @@ function App() {
               onClose={closeAllPopups}
               onSubmit={handleCardDelete}
             />
-          </Route>
+            <Footer/>
+          </ProtectedRoute>
           <Route path="/sign-in">
             <Login/>
           </Route>
