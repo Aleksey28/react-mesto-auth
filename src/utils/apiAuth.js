@@ -9,8 +9,7 @@ class Api {
   _getProxy({ relativePath, method, body = "", headers = {} }) {
     const options = {
       method,
-      headers: this._headers,
-      ...headers,
+      headers: { ...this._headers, ...headers },
     };
 
     if (!!body) {
@@ -30,12 +29,12 @@ class Api {
     }
   }
 
-  async tokenCheck() {
+  async tokenCheck({ jwt }) {
     const params = {
       relativePath: "/users/me",
       method: "GET",
       headers: {
-        authorization: "fcd9a632-5cad-436c-b58e-4c80d498006a",
+        Authorization: `Bearer ${jwt}`,
       },
     };
     const response = await this._getProxy(params);

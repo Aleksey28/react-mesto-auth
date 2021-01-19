@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import importedLogo from "../images/header-logo.svg";
 import Header from "./Header";
 import Main from "./Main";
@@ -15,8 +15,10 @@ import Login from "./Login";
 import SignUp from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import { apiAuthObject } from "../utils/apiAuth";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
+  const history = useHistory();
 
   //Создаем стейты
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -29,14 +31,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [infoTooltipProps, setInfoTooltipProps] = useState({
-    success: true,
-    message: "",
-  });
+  const [infoTooltipProps, setInfoTooltipProps] = useState({});
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
 
   //Загружаем данные карточек один раз при сборке
   useEffect(() => {
-    // setIsLoading(!isLoading);
     apiObject
       .getCardList()
       .then((data) => {
@@ -46,13 +46,11 @@ function App() {
         console.log(error);
       })
       .finally(() => {
-        // setIsLoading(!isLoading);
       });
   }, []);
 
   //Загружаем данные пользователя
   useEffect(() => {
-    // setIsLoading(!isLoading);
     apiObject
       .getUserData()
       .then((data) => {
@@ -60,9 +58,31 @@ function App() {
       })
       .catch(console.log)
       .finally(() => {
-        // setIsLoading(!isLoading);
       });
   }, []);
+
+  //Проверяем токен в локальном хранилище
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
+      // здесь будем проверять токен
+      apiAuthObject
+        .tokenCheck({ jwt })
+        .then((data) => {
+          setLoggedIn(true);
+          setCurrentUserEmail(data.email);
+        })
+        .catch(console.log)
+        .finally(() => {
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push("/");
+    }
+  }, [loggedIn, history])
 
   //Обработчик нажатия на аватарку
   const handleEditAvatarClick = () => {
@@ -226,6 +246,11 @@ function App() {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
         }
+        return res;
+      })
+      .then((res) => {
+        setLoggedIn(true);
+        setCurrentUserEmail(data.email);
       })
       .catch((error) => {
         setInfoTooltipProps({
@@ -240,15 +265,17 @@ function App() {
 
   //Эффект открытия попапа с информацией после действий регистрации и авторизации
   useEffect(() => {
-    setIsInfoTooltipOpen(true);
+    if (Object.keys(infoTooltipProps) > 0) {
+      setIsInfoTooltipOpen(true);
+    }
   }, [infoTooltipProps]);
 
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ ...currentUser, ...currentUserEmail }}>
       <div className="page" onKeyDown={handleClickOnButton}>
-        <Header logo={importedLogo}/>
+        <Header logo={importedLogo} loggedIn={loggedIn}/>
         <Switch>
-          <Route exact path="/">
+          <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main
               onEditProfile={handleEditProfileClick}
               onAddPlace={handleAddPlaceClick}
@@ -284,7 +311,7 @@ function App() {
               onClose={closeAllPopups}
               onSubmit={handleCardDelete}
             />
-          </Route>
+          </ProtectedRoute>
           <Route path="/sign-in">
             <Login onAuthorization={handleAuthorization}/>
           </Route>
