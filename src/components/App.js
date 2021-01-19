@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import importedLogo from "../images/header-logo.svg";
 import Header from "./Header";
 import Main from "./Main";
@@ -14,9 +14,12 @@ import Confirm from "./Confirm";
 import Login from "./Login";
 import SignUp from "./Register";
 import InfoTooltip from "./InfoTooltip";
+import { apiAuthObject } from "../utils/apiAuth";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
+  const history = useHistory();
+
   //Создаем стейты
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
@@ -28,11 +31,12 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [infoTooltipProps, setInfoTooltipProps] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUserEmail, setCurrentUserEmail] = useState("");
 
   //Загружаем данные карточек один раз при сборке
   useEffect(() => {
-    // setIsLoading(!isLoading);
     apiObject
       .getCardList()
       .then((data) => {
@@ -42,13 +46,11 @@ function App() {
         console.log(error);
       })
       .finally(() => {
-        // setIsLoading(!isLoading);
       });
   }, []);
 
   //Загружаем данные пользователя
   useEffect(() => {
-    // setIsLoading(!isLoading);
     apiObject
       .getUserData()
       .then((data) => {
@@ -56,9 +58,31 @@ function App() {
       })
       .catch(console.log)
       .finally(() => {
-        // setIsLoading(!isLoading);
       });
   }, []);
+
+  //Проверяем токен в локальном хранилище
+  useEffect(() => {
+    if (localStorage.getItem("jwt")) {
+      const jwt = localStorage.getItem("jwt");
+      // здесь будем проверять токен
+      apiAuthObject
+        .tokenCheck({ jwt })
+        .then(({ data }) => {
+          setLoggedIn(true);
+          setCurrentUserEmail(data.email);
+        })
+        .catch(console.log)
+        .finally(() => {
+        });
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      history.push("/");
+    }
+  }, [loggedIn, history])
 
   //Обработчик нажатия на аватарку
   const handleEditAvatarClick = () => {
@@ -192,10 +216,70 @@ function App() {
       closeAllPopups();
     }
   };
+
+  //Обработчик регистрации
+  const handleRegistration = (data) => {
+    setIsLoading(true);
+    apiAuthObject.signUp(data)
+      .then((res) => {
+        setInfoTooltipProps({
+          success: true,
+          message: "Вы успешно зарегистрировались!",
+        });
+      })
+      .catch((error) => {
+        setInfoTooltipProps({
+          success: false,
+          message: error.message,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  //Обработчик авторизации
+  const handleAuthorization = (data) => {
+    setIsLoading(true);
+    apiAuthObject.signIn(data)
+      .then((res) => {
+        if (res.token) {
+          localStorage.setItem("jwt", res.token);
+        }
+        return res;
+      })
+      .then((res) => {
+        setLoggedIn(true);
+        setCurrentUserEmail(data.email);
+      })
+      .catch((error) => {
+        setInfoTooltipProps({
+          success: false,
+          message: error.message,
+        });
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  //Эффект открытия попапа с информацией после действий регистрации и авторизации
+  useEffect(() => {
+    if (Object.keys(infoTooltipProps).length > 0) {
+      setIsInfoTooltipOpen(true);
+    }
+  }, [infoTooltipProps]);
+
+  const handleExit = () => {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    history.push('/login');
+  }
+
   return (
-    <CurrentUserContext.Provider value={currentUser}>
+    <CurrentUserContext.Provider value={{ ...currentUser, email: currentUserEmail }}>
       <div className="page" onKeyDown={handleClickOnButton}>
-        <Header logo={importedLogo} loggedIn={loggedIn}/>
+        <Header logo={importedLogo} loggedIn={loggedIn} onExit={handleExit}/>
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main
@@ -207,6 +291,7 @@ function App() {
               onCardLike={handleCardLike}
               onCardDelete={handleClickCardDelete}
             />
+            <Footer/>
             <AddPlacePopup
               isOpen={isAddPlacePopupOpen}
               isLoading={isLoading}
@@ -232,16 +317,18 @@ function App() {
               onClose={closeAllPopups}
               onSubmit={handleCardDelete}
             />
-            <Footer/>
           </ProtectedRoute>
           <Route path="/sign-in">
-            <Login/>
+            <Login onAuthorization={handleAuthorization}/>
           </Route>
           <Route path="/sign-up">
-            <SignUp/>
-            <InfoTooltip isSuccess={true} isOpen={isInfoTooltipOpen} onClose={closeAllPopups}/>
+            <SignUp onRegistration={handleRegistration}/>
           </Route>
         </Switch>
+        <InfoTooltip isSuccess={infoTooltipProps.success}
+                     message={infoTooltipProps.message}
+                     isOpen={isInfoTooltipOpen}
+                     onClose={closeAllPopups}/>
       </div>
     </CurrentUserContext.Provider>
   );

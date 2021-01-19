@@ -38,7 +38,7 @@ const inputsList = [
   { name: "password", placeholder: "Пароль"},
 ];
 
-export default function Login() {
+export default function Login({onAuthorization}) {
   return (
     <Auth name={propsAuthLogIn.name}
           title={propsAuthLogIn.title}
@@ -46,6 +46,6 @@ export default function Login() {
           isLoading={false}
           validators={validators}
           inputsList={inputsList}
-          onSubmit={() => { console.log("message");}}/>
+          onSubmit={onAuthorization}/>
   );
 }

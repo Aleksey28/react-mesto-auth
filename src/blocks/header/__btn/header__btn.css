@@ -5,25 +5,12 @@
   transition: all .2s ease-in;
   border: none;
   outline: none;
-  background-color: rgba(0,0,0,0);
-  background-size: cover;
-  background-position: center;
-  width: 30px;
-  height: 30px;
-  display: none;
-  grid-area: switch;
   justify-self: flex-end;
+  background: none;
 }
-
 
 .header__btn:hover {
   opacity: .6;
 }
 
 
-@media screen and (max-width: 600px) {
-  .header__btn {
-    display: block;
-    margin-right: calc((100vw - 320px) / (1280 - 320) * (0 - 26) + 26px);
-  }
-}
