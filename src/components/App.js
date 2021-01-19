@@ -68,7 +68,7 @@ function App() {
       // здесь будем проверять токен
       apiAuthObject
         .tokenCheck({ jwt })
-        .then((data) => {
+        .then(({ data }) => {
           setLoggedIn(true);
           setCurrentUserEmail(data.email);
         })
@@ -270,10 +270,15 @@ function App() {
     }
   }, [infoTooltipProps]);
 
+  const handleExit = () => {
+    localStorage.removeItem('jwt');
+    history.push('/login');
+  }
+
   return (
-    <CurrentUserContext.Provider value={{ ...currentUser, ...currentUserEmail }}>
+    <CurrentUserContext.Provider value={{ ...currentUser, email: currentUserEmail }}>
       <div className="page" onKeyDown={handleClickOnButton}>
-        <Header logo={importedLogo} loggedIn={loggedIn}/>
+        <Header logo={importedLogo} loggedIn={loggedIn} onExit={handleExit}/>
         <Switch>
           <ProtectedRoute exact path="/" loggedIn={loggedIn}>
             <Main

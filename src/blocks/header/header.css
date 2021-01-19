@@ -3,11 +3,12 @@
 @import url(__navbar/_vertical/header__navbar_vertical.css);
 @import url(__navbar/_hidden/header__navbar_hidden.css);
 @import url(./__nlink/header__nlink.css);
-@import url(./__nlink/_type/header__nlink_type_exit.css);
 @import url(./__email/header__email.css);
 @import url(./__btn/header__btn.css);
-@import url(./__btn/_type/header__btn_type_close.css);
-@import url(./__btn/_type/header__btn_type_open.css);
+@import url(__btn/_action/header__btn_action_close.css);
+@import url(__btn/_action/header__btn_action_open.css);
+@import url(__btn/_type/header__btn_type_switch.css);
+@import url(__btn/_type/header__btn_type_exit.css);
 
 .header {
   display: grid;

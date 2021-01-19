@@ -1,0 +1,16 @@
+.header__btn_type_switch {
+  display: none;
+  width: 30px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0);
+  background-position: center;
+  background-size: cover;
+  grid-area: switch;
+}
+
+@media screen and (max-width: 600px) {
+  .header__btn_type_switch {
+    display: block;
+    margin-right: calc((100vw - 320px) / (1280 - 320) * (0 - 26) + 26px);
+  }
+}

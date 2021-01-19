@@ -1,4 +1,4 @@
-.header__btn_type_close {
+.header__btn_action_close {
   transform: rotate(45deg);
   background-image: url(../../../../images/profile-add-btn.svg);
 }
