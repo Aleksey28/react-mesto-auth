@@ -11,6 +11,8 @@
   width: 30px;
   height: 30px;
   display: none;
+  grid-area: switch;
+  justify-self: flex-end;
 }
 
 
@@ -22,5 +24,6 @@
 @media screen and (max-width: 600px) {
   .header__btn {
     display: block;
+    margin-right: calc((100vw - 320px) / (1280 - 320) * (0 - 26) + 26px);
   }
 }
