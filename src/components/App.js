@@ -230,7 +230,7 @@ function App() {
       .catch((error) => {
         setInfoTooltipProps({
           success: false,
-          message: error,
+          message: error.message,
         });
       })
       .finally(() => {
@@ -255,7 +255,7 @@ function App() {
       .catch((error) => {
         setInfoTooltipProps({
           success: false,
-          message: error,
+          message: error.message,
         });
       })
       .finally(() => {
@@ -265,13 +265,14 @@ function App() {
 
   //Эффект открытия попапа с информацией после действий регистрации и авторизации
   useEffect(() => {
-    if (Object.keys(infoTooltipProps) > 0) {
+    if (Object.keys(infoTooltipProps).length > 0) {
       setIsInfoTooltipOpen(true);
     }
   }, [infoTooltipProps]);
 
   const handleExit = () => {
     localStorage.removeItem('jwt');
+    setLoggedIn(false);
     history.push('/login');
   }
 
@@ -322,12 +323,12 @@ function App() {
           </Route>
           <Route path="/sign-up">
             <SignUp onRegistration={handleRegistration}/>
-            <InfoTooltip isSuccess={infoTooltipProps.success}
-                         message={infoTooltipProps.message}
-                         isOpen={isInfoTooltipOpen}
-                         onClose={closeAllPopups}/>
           </Route>
         </Switch>
+        <InfoTooltip isSuccess={infoTooltipProps.success}
+                     message={infoTooltipProps.message}
+                     isOpen={isInfoTooltipOpen}
+                     onClose={closeAllPopups}/>
       </div>
     </CurrentUserContext.Provider>
   );

@@ -18,6 +18,8 @@ export default function Header({ logo, loggedIn, onExit }) {
     onExit();
   };
 
+
+  debugger;
   return (
     <header className={cn("header", { header_compact: loggedIn })}>
       <a href="#0">

@@ -25,7 +25,12 @@ class Api {
     if (response.ok) {
       return description;
     } else {
-      return Promise.reject(`Ошибка: ${response.status}\nОписание: ${description.message}`);
+      return Promise.reject({
+        status: response.status,
+        message: description.message ? description.message : description.error
+                                                             ? description.error
+                                                             : "Что-то пошло не так!\nПопробуйте ещё раз.",
+      });
     }
   }
 
