@@ -39,7 +39,8 @@ const inputsList = [
   { name: "password", placeholder: "Пароль" },
 ];
 
-export default function Register() {
+export default function Register({onRegistration}) {
+
   return (
     <Auth name={propsAuthRegister.name}
           title={propsAuthRegister.title}
@@ -47,7 +48,7 @@ export default function Register() {
           isLoading={false}
           validators={validators}
           inputsList={inputsList}
-          onSubmit={() => { console.log("message");}}>
+          onSubmit={onRegistration}>
       <NavLink to="/sign-in" className="auth__link">Уже зарегистрированы? Войти</NavLink>
     </Auth>
   );
