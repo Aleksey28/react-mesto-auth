@@ -11,10 +11,6 @@
   color: #fff;
 }
 
-.header__menu > .header__nlink {
-  color: #A9A9A9;
-}
-
 .header__nlink:hover {
   opacity: .6;
 }
@@ -23,11 +19,5 @@
   .header__nlink {
     font-size: 14px;
     line-height: 17px;
-  }
-
-  .header__menu > .header__nlink {
-    font-size: 18px;
-    line-height: 22px;
-    margin: 0;
   }
 }

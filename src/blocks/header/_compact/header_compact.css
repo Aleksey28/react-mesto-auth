@@ -1,0 +1,8 @@
+@media screen and (max-width: 600px) {
+  .header_compact {
+    grid-template-areas: 'navbar navbar'
+                          'logo switch';
+    grid-template-rows: auto 83px;
+  }
+}
+
