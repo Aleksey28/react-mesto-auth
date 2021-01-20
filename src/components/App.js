@@ -44,8 +44,6 @@ function App() {
       })
       .catch((error) => {
         console.log(error);
-      })
-      .finally(() => {
       });
   }, []);
 
@@ -56,9 +54,7 @@ function App() {
       .then((data) => {
         setCurrentUser(data);
       })
-      .catch(console.log)
-      .finally(() => {
-      });
+      .catch(console.log);
   }, []);
 
   //Проверяем токен в локальном хранилище
@@ -72,9 +68,7 @@ function App() {
           setLoggedIn(true);
           setCurrentUserEmail(data.email);
         })
-        .catch(console.log)
-        .finally(() => {
-        });
+        .catch(console.log);
     }
   }, []);
 
@@ -82,7 +76,7 @@ function App() {
     if (loggedIn) {
       history.push("/");
     }
-  }, [loggedIn, history])
+  }, [loggedIn, history]);
 
   //Обработчик нажатия на аватарку
   const handleEditAvatarClick = () => {
@@ -226,6 +220,7 @@ function App() {
           success: true,
           message: "Вы успешно зарегистрировались!",
         });
+        history.push("/sign-in");
       })
       .catch((error) => {
         setInfoTooltipProps({
@@ -271,10 +266,10 @@ function App() {
   }, [infoTooltipProps]);
 
   const handleExit = () => {
-    localStorage.removeItem('jwt');
+    localStorage.removeItem("jwt");
     setLoggedIn(false);
-    history.push('/login');
-  }
+    history.push("/login");
+  };
 
   return (
     <CurrentUserContext.Provider value={{ ...currentUser, email: currentUserEmail }}>
