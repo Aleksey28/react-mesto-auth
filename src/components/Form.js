@@ -8,7 +8,7 @@ export default function Form({
   isOpen,
   validators,
   onSubmit,
-  defaultValues,
+  defaultValues = {},
   children,
 }) {
 
@@ -24,7 +24,9 @@ export default function Form({
   //Устанавливаем значения формы в зависимости от дефолтного
   //Так как дефолтные значения могут прийти после отрисовки с сервера, подключаем эффект на их изменение
   useEffect(() => {
-    setFormValues(defaultValues);
+    if(Object.keys(defaultValues).length>0) {
+      setFormValues(defaultValues);
+    }
   }, [defaultValues]);
 
   useEffect(() => {
@@ -32,7 +34,9 @@ export default function Form({
       //Обнуляем стейт отображения ошибок
       setShowErrors({});
       //Устанавливаем дефолтные значения
-      setFormValues(defaultValues);
+      if(Object.keys(defaultValues).length>0) {
+        setFormValues(defaultValues);
+      }
     }
   }, [isOpen, defaultValues]);
 
