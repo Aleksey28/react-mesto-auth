@@ -36,7 +36,7 @@ const validators = {
 
 const inputsList = [
   { name: "email", placeholder: "Email" },
-  { name: "password", placeholder: "Пароль" },
+  { name: "password", placeholder: "Пароль", type: "password" },
 ];
 
 export default function Register({onRegistration}) {
