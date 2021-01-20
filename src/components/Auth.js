@@ -33,10 +33,6 @@ export default function Auth({ name, title, submitStates, isLoading, children, i
       name="container"
       onSubmit={onSubmit}
       validators={validators}
-      defaultValues={{
-        email: "",
-        password: "",
-      }}
       isOpen={true}
     >
       <p className="auth__title">{title}</p>
