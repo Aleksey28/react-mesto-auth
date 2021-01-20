@@ -220,6 +220,7 @@ function App() {
           success: true,
           message: "Вы успешно зарегистрировались!",
         });
+        history.push("/sign-in");
       })
       .catch((error) => {
         setInfoTooltipProps({
